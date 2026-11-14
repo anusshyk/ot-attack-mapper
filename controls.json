@@ -1,0 +1,211 @@
+{
+  "note": "Your defensive controls and detections, each mapped to the ATT&CK for ICS techniques it addresses and the MITRE D3FEND countermeasure it implements. Edit this file to reflect YOUR environment; coverage is computed from it. 'status' is one of: deployed, partial, planned.",
+  "controls": [
+    {
+      "id": "DET-MG-001",
+      "name": "modbus-guard: unauthorized master detection",
+      "type": "detection",
+      "status": "deployed",
+      "source": "modbus-guard MG-001",
+      "covers": [
+        "T0848",
+        "T0859",
+        "T0886"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-NTA",
+          "name": "Network Traffic Analysis"
+        },
+        {
+          "id": "D3-CA",
+          "name": "Connection Attempt Analysis"
+        }
+      ]
+    },
+    {
+      "id": "DET-MG-002",
+      "name": "modbus-guard: unauthorized write command detection",
+      "type": "detection",
+      "status": "deployed",
+      "source": "modbus-guard MG-002",
+      "covers": [
+        "T0836",
+        "T1692.001",
+        "T0821"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-NTA",
+          "name": "Network Traffic Analysis"
+        },
+        {
+          "id": "D3-OTF",
+          "name": "Outbound Traffic Filtering"
+        }
+      ]
+    },
+    {
+      "id": "DET-MG-003",
+      "name": "modbus-guard: sensitive/diagnostic function detection",
+      "type": "detection",
+      "status": "deployed",
+      "source": "modbus-guard MG-003",
+      "covers": [
+        "T0888",
+        "T0868"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-NTA",
+          "name": "Network Traffic Analysis"
+        }
+      ]
+    },
+    {
+      "id": "DET-MG-004",
+      "name": "modbus-guard: function-code scan detection",
+      "type": "detection",
+      "status": "deployed",
+      "source": "modbus-guard MG-004",
+      "covers": [
+        "T0842",
+        "T0840",
+        "T0846"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-NTA",
+          "name": "Network Traffic Analysis"
+        }
+      ]
+    },
+    {
+      "id": "DET-MG-005",
+      "name": "modbus-guard: request flood detection",
+      "type": "detection",
+      "status": "deployed",
+      "source": "modbus-guard MG-005",
+      "covers": [
+        "T0814",
+        "T0806"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-NTA",
+          "name": "Network Traffic Analysis"
+        }
+      ]
+    },
+    {
+      "id": "SIEM-WAZUH",
+      "name": "Wazuh SIEM: OT log collection and correlation",
+      "type": "detection",
+      "status": "deployed",
+      "source": "Wazuh manager + modbus-guard decoder/rules",
+      "covers": [
+        "T0859",
+        "T0867",
+        "T0885",
+        "T0884"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-PM",
+          "name": "Platform Monitoring"
+        },
+        {
+          "id": "D3-NTA",
+          "name": "Network Traffic Analysis"
+        }
+      ]
+    },
+    {
+      "id": "SEG-ZONES",
+      "name": "IEC 62443 zone & conduit segmentation (firewall between IT and OT)",
+      "type": "preventive",
+      "status": "deployed",
+      "source": "IEC 62443-3-3 SR 5.1",
+      "covers": [
+        "T0883",
+        "T0822",
+        "T0886",
+        "T0867",
+        "T0843"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-NI",
+          "name": "Network Isolation"
+        },
+        {
+          "id": "D3-ITF",
+          "name": "Inbound Traffic Filtering"
+        }
+      ]
+    },
+    {
+      "id": "AUTH-MFA",
+      "name": "MFA on engineering workstations and remote access",
+      "type": "preventive",
+      "status": "deployed",
+      "source": "IEC 62443-3-3 SR 1.1 / SR 1.2",
+      "covers": [
+        "T0822",
+        "T0859",
+        "T1694.001",
+        "T1694.002"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-MFA",
+          "name": "Multi-factor Authentication"
+        },
+        {
+          "id": "D3-SPP",
+          "name": "Strong Password Policy"
+        }
+      ]
+    },
+    {
+      "id": "RMEDIA-CTRL",
+      "name": "Removable media control & transient asset scanning",
+      "type": "preventive",
+      "status": "partial",
+      "source": "IEC 62443-3-3 SR 1.9",
+      "covers": [
+        "T0847",
+        "T0864"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-FA",
+          "name": "File Analysis"
+        },
+        {
+          "id": "D3-MA",
+          "name": "Media Analysis"
+        }
+      ]
+    },
+    {
+      "id": "BACKUP-PLC",
+      "name": "PLC project & firmware backup / integrity baseline",
+      "type": "preventive",
+      "status": "partial",
+      "source": "IEC 62443-3-3 SR 7.3 / SR 3.4",
+      "covers": [
+        "T1693.001",
+        "T1693.002",
+        "T0889",
+        "T0873"
+      ],
+      "d3fend": [
+        {
+          "id": "D3-FIM",
+          "name": "File Integrity Monitoring"
+        }
+      ]
+    }
+  ]
+}
